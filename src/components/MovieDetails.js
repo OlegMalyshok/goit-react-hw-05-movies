@@ -12,7 +12,7 @@ const MovieDetails = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}?api_key=167940d181678e9686c25c43b11eb557`
+          `https://api.themoviedb.org/3/movie/${movieId}?api_key=118bde756ee111f8e66b14be4b4bb007`
         );
         const data = await response.json();
         setMovie(data);
