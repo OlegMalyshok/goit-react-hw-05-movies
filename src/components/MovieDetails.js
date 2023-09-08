@@ -35,7 +35,7 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <Link to={location.state.from ?? '/'}>
+      <Link to={location.state?.from ?? '/'}>
         <button>← Go back</button>
       </Link>
       <div>
