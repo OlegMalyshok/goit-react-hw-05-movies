@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -7,6 +7,7 @@ const Movies = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [SearchedMovie, setSearchedMovie] = useState(null);
   const [params, setParams] = useSearchParams();
+  const location = useLocation();
 
   const handleInputValue = e => {
     setSearchQuery(e.target.value);
@@ -72,7 +73,9 @@ const Movies = () => {
     SearchedMovie.map(movie => setParams({ id: movie.id }));
   };
 
-  console.log(params);
+  // console.log(params);
+
+  console.log(location);
   return (
     <>
       <form onSubmit={handleFormSubmit}>
@@ -89,7 +92,11 @@ const Movies = () => {
           return (
             <ul key={movie.id}>
               <li>
-                <Link onClick={test} to={`/movies/${movie.id}`}>
+                <Link
+                  onClick={test}
+                  to={`/movies/${movie.id}`}
+                  state={{ from: location }}
+                >
                   {movie.title}
                 </Link>
               </li>

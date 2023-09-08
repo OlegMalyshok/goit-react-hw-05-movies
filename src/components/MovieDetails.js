@@ -4,7 +4,6 @@ import { Link, useParams, useLocation, Outlet } from 'react-router-dom';
 const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
 
   const [movie, setMovie] = useState({});
   const [genres, setGenres] = useState([]);
@@ -18,7 +17,7 @@ const MovieDetails = () => {
         const data = await response.json();
         setMovie(data);
         setGenres(data.genres);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.error('Error fetching movie details:', error);
       }
@@ -36,7 +35,7 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <Link to={backLinkHref}>
+      <Link to={location.state.from ?? '/'}>
         <button>← Go back</button>
       </Link>
       <div>

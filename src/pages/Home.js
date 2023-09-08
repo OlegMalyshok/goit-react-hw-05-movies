@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
 const HomePage = () => {
   const [trends, setTrends] = useState([]);
   const [, setParams] = useSearchParams();
+  const location = useLocation();
 
   const UpdId = trendId => {
     setParams({ id: trendId });
@@ -25,6 +26,8 @@ const HomePage = () => {
     fetchTrends();
   }, []);
 
+  console.log(location);
+
   return (
     <>
       <p>Trending Today</p>
@@ -34,6 +37,7 @@ const HomePage = () => {
             <Link
               to={`/movies/${film.id}`}
               key={film.id}
+              state={{ from: location }}
               onClick={() => UpdId(film.id)}
             >
               <li>{film.title}</li>
